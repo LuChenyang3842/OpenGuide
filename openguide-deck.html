@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="OpenGuide concept deck for the Canva Collective Grant">
+  <title>OpenGuide — Canva Collective Grant</title>
+  <style>
+    :root { --ink:#101828; --paper:#fff; --blue:#0057b8; --blue-dark:#003b7a; --pale:#eaf2fb; --muted:#475467; --line:#cbd5e1; --focus:#ffbf47; }
+    * { box-sizing:border-box; }
+    html { background:var(--ink); scroll-behavior:smooth; scroll-snap-type:y mandatory; }
+    body { margin:0; color:var(--ink); background:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC",sans-serif; font-synthesis:none; text-rendering:optimizeLegibility; }
+    button { font:inherit; }
+    .skip-link { position:fixed; z-index:100; top:12px; left:12px; padding:12px 16px; color:#fff; background:var(--ink); border-radius:6px; transform:translateY(-160%); }
+    .skip-link:focus { transform:translateY(0); }
+    .slide { position:relative; display:grid; min-height:100vh; padding:clamp(72px,8vw,120px) clamp(32px,8vw,128px); overflow:hidden; scroll-snap-align:start; background:var(--paper); }
+    .slide.blue { color:#fff; background:var(--blue-dark); }
+    .slide:focus { outline:none; }
+    .slide:focus-visible::after { content:""; position:absolute; inset:12px; border:4px solid var(--focus); pointer-events:none; }
+    .meta { position:absolute; top:clamp(28px,4vw,52px); left:clamp(32px,8vw,128px); right:clamp(32px,8vw,128px); display:flex; align-items:center; justify-content:space-between; gap:24px; font-size:13px; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
+    .meta span:last-child { opacity:.72; }
+    .canvas { display:grid; align-self:center; width:100%; max-width:1220px; margin:0 auto; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { margin:0; font-size:clamp(76px,14vw,190px); font-weight:800; line-height:.86; letter-spacing:-.075em; }
+    h2 { max-width:1080px; margin-bottom:clamp(34px,5vw,68px); font-size:clamp(50px,7.3vw,104px); font-weight:770; line-height:.98; letter-spacing:-.055em; }
+    h3 { margin-bottom:10px; font-size:clamp(26px,2.5vw,38px); line-height:1.05; letter-spacing:-.035em; }
+    .cover-layout { grid-template-columns:1.2fr .8fr; gap:84px; align-items:end; }
+    .cover-copy { max-width:430px; margin:0 0 8px; font-size:clamp(28px,3vw,44px); font-weight:650; line-height:1.18; letter-spacing:-.035em; }
+    .cover-rule { position:absolute; right:0; bottom:17%; width:24vw; height:16px; background:#cfe5ff; }
+    .problem-layout,.profile-layout,.budget-layout { grid-template-columns:.95fr 1.05fr; gap:clamp(56px,8vw,112px); align-items:center; }
+    .problem-layout h2,.profile-layout h2,.budget-layout h2 { margin-bottom:0; }
+    .plain-list,.budget-list { margin:0; padding:0; list-style:none; border-top:2px solid currentColor; }
+    .plain-list li { display:grid; grid-template-columns:48px 1fr; gap:20px; align-items:center; padding:19px 0; border-bottom:1px solid var(--line); font-size:clamp(21px,2vw,30px); font-weight:680; }
+    .plain-list b { color:var(--blue); font-size:15px; letter-spacing:.05em; }
+    .people-grid { display:grid; grid-template-columns:1fr 1fr; border-top:2px solid currentColor; }
+    .person { min-height:170px; padding:26px 28px 26px 0; border-bottom:1px solid rgba(255,255,255,.42); }
+    .person:nth-child(odd) { margin-right:34px; border-right:1px solid rgba(255,255,255,.42); }
+    .person strong { display:block; margin-bottom:12px; font-size:clamp(25px,2.4vw,36px); line-height:1.08; }
+    .person span { display:block; max-width:290px; color:rgba(255,255,255,.82); font-size:clamp(17px,1.4vw,21px); line-height:1.45; }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); border-top:2px solid var(--ink); }
+    .step { min-height:250px; padding:26px 34px 0 0; border-right:1px solid var(--line); }
+    .step + .step { padding-left:34px; }
+    .step:last-child { border-right:0; }
+    .step-number { display:block; margin-bottom:52px; color:var(--blue); font-size:15px; font-weight:800; letter-spacing:.08em; }
+    .step p { max-width:280px; margin:0; color:var(--muted); font-size:clamp(17px,1.45vw,21px); line-height:1.45; }
+    .human-review { margin:44px 0 0; padding-left:20px; border-left:6px solid var(--blue); color:var(--muted); font-size:clamp(20px,2vw,29px); font-weight:680; }
+    .pilot-layout { grid-template-columns:.6fr 1.4fr; gap:clamp(60px,9vw,128px); align-items:center; }
+    .pilot-lead strong { display:block; font-size:clamp(112px,17vw,244px); line-height:.75; letter-spacing:-.075em; }
+    .pilot-lead span { display:block; margin-top:32px; font-size:clamp(22px,2.2vw,34px); font-weight:650; }
+    .metrics { display:grid; grid-template-columns:1fr 1fr; border-top:2px solid currentColor; }
+    .metric { padding:26px 30px 30px 0; border-bottom:1px solid var(--line); }
+    .metric:nth-child(odd) { margin-right:34px; border-right:1px solid var(--line); }
+    .metric strong { display:block; margin-bottom:8px; color:var(--blue); font-size:clamp(44px,5.4vw,78px); line-height:.95; letter-spacing:-.05em; }
+    .metric span { color:var(--muted); font-size:clamp(18px,1.55vw,23px); font-weight:650; }
+    .profile-name { margin-bottom:24px; font-size:clamp(66px,8vw,114px); }
+    .profile-role { max-width:430px; margin:0; color:rgba(255,255,255,.82); font-size:clamp(20px,2vw,30px); line-height:1.35; }
+    .proof-list { display:grid; grid-template-columns:1fr 1fr; border-top:2px solid currentColor; }
+    .proof { min-height:150px; padding:25px 30px 24px 0; border-bottom:1px solid rgba(255,255,255,.42); }
+    .proof:nth-child(odd) { margin-right:34px; border-right:1px solid rgba(255,255,255,.42); }
+    .proof strong { display:block; margin-bottom:9px; color:#cfe5ff; font-size:clamp(27px,3vw,44px); line-height:1; letter-spacing:-.04em; }
+    .proof span { display:block; max-width:300px; color:rgba(255,255,255,.8); font-size:clamp(16px,1.3vw,20px); line-height:1.4; }
+    .profile-close { grid-column:1/-1; margin:28px 0 0; font-size:clamp(20px,2vw,29px); font-weight:680; line-height:1.4; }
+    .budget-total { font-size:clamp(78px,10.5vw,154px); font-weight:790; line-height:.82; letter-spacing:-.07em; }
+    .budget-total span { display:block; margin-top:30px; color:var(--muted); font-size:.2em; font-weight:680; letter-spacing:-.025em; }
+    .budget-list li { display:grid; grid-template-columns:140px 1fr; gap:26px; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line); }
+    .budget-list strong { color:var(--blue); font-size:clamp(24px,2.4vw,35px); letter-spacing:-.035em; }
+    .budget-list span { font-size:clamp(18px,1.6vw,24px); font-weight:650; }
+    .closing { max-width:1160px; margin:0; font-size:clamp(58px,8.4vw,122px); font-weight:780; line-height:.98; letter-spacing:-.055em; }
+    .closing-note { max-width:760px; margin:44px 0 0; color:rgba(255,255,255,.82); font-size:clamp(19px,1.8vw,27px); font-weight:620; line-height:1.45; }
+    .controls { position:fixed; z-index:30; right:18px; bottom:18px; display:flex; align-items:center; gap:8px; padding:8px; color:#fff; background:rgba(16,24,40,.96); border:1px solid rgba(255,255,255,.4); border-radius:8px; }
+    .controls button { min-width:48px; min-height:48px; padding:0 14px; color:inherit; background:transparent; border:1px solid transparent; border-radius:5px; cursor:pointer; }
+    .controls button:hover { background:rgba(255,255,255,.13); }
+    .controls button:focus-visible,.skip-link:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    .language { display:flex; padding-right:8px; border-right:1px solid rgba(255,255,255,.36); }
+    .language button[aria-pressed="true"] { color:var(--ink); background:#fff; font-weight:800; }
+    #counter { min-width:56px; text-align:center; font-size:13px; font-variant-numeric:tabular-nums; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media (max-width:780px) {
+      html { scroll-snap-type:none; }
+      .slide { padding:86px 28px 110px; }
+      .meta { top:28px; left:28px; right:28px; }
+      .cover-layout,.problem-layout,.profile-layout,.budget-layout,.pilot-layout { grid-template-columns:1fr; gap:46px; }
+      .people-grid,.steps,.metrics,.proof-list { grid-template-columns:1fr; }
+      .person:nth-child(odd),.metric:nth-child(odd),.proof:nth-child(odd) { margin-right:0; border-right:0; }
+      .step { min-height:0; padding:22px 0; border-right:0; border-bottom:1px solid var(--line); }
+      .step + .step { padding-left:0; }
+      .step-number { margin-bottom:16px; }
+      .cover-rule { display:none; }
+      .budget-list li { grid-template-columns:112px 1fr; }
+      .controls { left:10px; right:10px; justify-content:center; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#slide-1" data-en="Skip to slides" data-zh="跳到幻灯片">Skip to slides</a>
+  <main id="slides" aria-label="OpenGuide concept deck" data-aria-en="OpenGuide concept deck" data-aria-zh="OpenGuide 项目演示">
+    <section id="slide-1" class="slide blue" tabindex="-1" role="region" aria-roledescription="slide" aria-labelledby="title-1" data-title-en="OpenGuide" data-title-zh="OpenGuide" data-aria-en="Slide 1 of 8" data-aria-zh="第 1 张，共 8 张">
+      <div class="meta"><span>Canva Collective Grant</span><span>01</span></div><div class="cover-rule" aria-hidden="true"></div>
+      <div class="canvas cover-layout"><h1 id="title-1">Open<br>Guide</h1><p class="cover-copy" data-en="Clear information. For everyone." data-zh="清晰的信息，人人可用。">Clear information. For everyone.</p></div>
+    </section>
+    <section id="slide-2" class="slide" tabindex="-1" role="region" aria-roledescription="slide" aria-labelledby="title-2" data-title-en="The problem" data-title-zh="问题" data-aria-en="Slide 2 of 8" data-aria-zh="第 2 张，共 8 张">
+      <div class="meta"><span data-en="The problem" data-zh="问题">The problem</span><span>02</span></div>
+      <div class="canvas problem-layout"><h2 id="title-2" data-en="Help is hard to use" data-zh="求助信息很难使用">Help is hard to use</h2><ul class="plain-list">
+        <li><b aria-hidden="true">01</b><span data-en="Too long" data-zh="内容太长">Too long</span></li><li><b aria-hidden="true">02</b><span data-en="One language" data-zh="只有一种语言">One language</span></li><li><b aria-hidden="true">03</b><span data-en="Hard to read on phones" data-zh="手机上难以阅读">Hard to read on phones</span></li><li><b aria-hidden="true">04</b><span data-en="Not built for screen readers" data-zh="屏幕阅读器无法识别">Not built for screen readers</span></li>
+      </ul></div>
+    </section>
+    <section id="slide-3" class="slide blue" tabindex="-1" role="region" aria-roledescription="slide" aria-labelledby="title-3" data-title-en="Who loses access" data-title-zh="谁会被遗漏" data-aria-en="Slide 3 of 8" data-aria-zh="第 3 张，共 8 张">
+      <div class="meta"><span data-en="Who loses access" data-zh="谁会被遗漏">Who loses access</span><span>03</span></div>
+      <div class="canvas"><h2 id="title-3" data-en="The format becomes a barrier" data-zh="信息格式成了障碍">The format becomes a barrier</h2><div class="people-grid">
+        <div class="person"><strong data-en="New arrivals" data-zh="新来者">New arrivals</strong><span data-en="Key guidance may not exist in their language." data-zh="重要信息可能没有他们熟悉的语言版本。">Key guidance may not exist in their language.</span></div>
+        <div class="person"><strong data-en="People with disabilities" data-zh="残障人士">People with disabilities</strong><span data-en="Many documents fail assistive technology." data-zh="许多文档无法配合辅助技术使用。">Many documents fail assistive technology.</span></div>
+        <div class="person"><strong data-en="Phone users" data-zh="手机用户">Phone users</strong><span data-en="Dense PDFs break on small screens." data-zh="复杂的 PDF 在小屏幕上难以使用。">Dense PDFs break on small screens.</span></div>
+        <div class="person"><strong data-en="People on slow connections" data-zh="网络较慢的人">People on slow connections</strong><span data-en="Large files may not open." data-zh="大文件可能无法打开。">Large files may not open.</span></div>
+      </div></div>
+    </section>
+    <section id="slide-4" class="slide" tabindex="-1" role="region" aria-roledescription="slide" aria-labelledby="title-4" data-title-en="How OpenGuide works" data-title-zh="OpenGuide 如何工作" data-aria-en="Slide 4 of 8" data-aria-zh="第 4 张，共 8 张">
+      <div class="meta"><span data-en="How it works" data-zh="工作方式">How it works</span><span>04</span></div><div class="canvas"><h2 id="title-4" data-en="One source. Clear pages in many languages." data-zh="一份原文，生成多语言清晰页面。">One source. Clear pages in many languages.</h2>
+      <div class="steps"><article class="step"><span class="step-number">01</span><h3 data-en="Upload" data-zh="上传">Upload</h3><p data-en="Add an existing document." data-zh="添加现有文档。">Add an existing document.</p></article><article class="step"><span class="step-number">02</span><h3 data-en="Check" data-zh="核对">Check</h3><p data-en="Review the plain-language draft and translations." data-zh="核对简明版本和翻译。">Review the plain-language draft and translations.</p></article><article class="step"><span class="step-number">03</span><h3 data-en="Share" data-zh="发布">Share</h3><p data-en="Publish an accessible page that works on any device." data-zh="发布适配各种设备的无障碍页面。">Publish an accessible page that works on any device.</p></article></div><p class="human-review" data-en="AI drafts. People approve." data-zh="AI 生成初稿，人工确认。">AI drafts. People approve.</p></div>
+    </section>
+    <section id="slide-5" class="slide" tabindex="-1" role="region" aria-roledescription="slide" aria-labelledby="title-5" data-title-en="The pilot" data-title-zh="试点计划" data-aria-en="Slide 5 of 8" data-aria-zh="第 5 张，共 8 张">
+      <div class="meta"><span data-en="The pilot" data-zh="试点计划">The pilot</span><span>05</span></div><div class="canvas pilot-layout"><div class="pilot-lead"><strong>12</strong><span data-en="weeks" data-zh="周">weeks</span></div><div class="metrics"><div class="metric"><strong>1</strong><span data-en="public MVP" data-zh="个公开 MVP">public MVP</span></div><div class="metric"><strong>3–5</strong><span data-en="nonprofit partners" data-zh="家公益组织">nonprofit partners</span></div><div class="metric"><strong>30</strong><span data-en="accessible resources" data-zh="份无障碍资料">accessible resources</span></div><div class="metric"><strong>2</strong><span data-en="languages at launch" data-zh="种首发语言">languages at launch</span></div></div></div>
+    </section>
+    <section id="slide-6" class="slide blue" tabindex="-1" role="region" aria-roledescription="slide" aria-labelledby="title-6" data-title-en="Why me" data-title-zh="为什么是我" data-aria-en="Slide 6 of 8" data-aria-zh="第 6 张，共 8 张">
+      <div class="meta"><span data-en="Why me" data-zh="为什么是我">Why me</span><span>06</span></div><div class="canvas profile-layout"><div><h2 id="title-6" class="profile-name">Chenyang<br>Lu</h2><p class="profile-role" data-en="Senior engineer, product builder and departing Canvanaut." data-zh="高级工程师、产品开发者、即将离开 Canva 的 Canvanaut。">Senior engineer, product builder and departing Canvanaut.</p></div><div class="proof-list">
+        <div class="proof"><strong>6+ years</strong><span data-en="Built products and infrastructure at scale." data-zh="构建大规模产品与基础设施。">Built products and infrastructure at scale.</span></div><div class="proof"><strong>AI-ready docs</strong><span data-en="Led a machine-readable documentation platform." data-zh="主导机器可读的文档平台。">Led a machine-readable documentation platform.</span></div><div class="proof"><strong>10M+ logs/day</strong><span data-en="Founded a company-wide observability platform." data-zh="创建公司级可观测性平台。">Founded a company-wide observability platform.</span></div><div class="proof"><strong>500K+ tx/day</strong><span data-en="Led payment components used at high volume." data-zh="主导高流量支付组件。">Led payment components used at high volume.</span></div><p class="profile-close" data-en="I have built this kind of system before. Now I want to build it for nonprofits." data-zh="我做过这类系统。现在，我想为公益组织打造它。">I have built this kind of system before. Now I want to build it for nonprofits.</p>
+      </div></div>
+    </section>
+    <section id="slide-7" class="slide" tabindex="-1" role="region" aria-roledescription="slide" aria-labelledby="title-7" data-title-en="Grant use" data-title-zh="资金用途" data-aria-en="Slide 7 of 8" data-aria-zh="第 7 张，共 8 张">
+      <div class="meta"><span data-en="Grant use" data-zh="资金用途">Grant use</span><span>07</span></div><div class="canvas budget-layout"><div><h2 id="title-7" class="sr-only" data-en="Grant use" data-zh="资金用途">Grant use</h2><div class="budget-total">$10K<span data-en="12-week build" data-zh="12 周开发">12-week build</span></div></div><ul class="budget-list"><li><strong>$3,500</strong><span data-en="MVP development" data-zh="MVP 开发">MVP development</span></li><li><strong>$2,000</strong><span data-en="User research" data-zh="用户研究">User research</span></li><li><strong>$1,500</strong><span data-en="AI, OCR and hosting" data-zh="AI、OCR 与托管">AI, OCR and hosting</span></li><li><strong>$2,000</strong><span data-en="Accessibility testing" data-zh="无障碍测试">Accessibility testing</span></li><li><strong>$1,000</strong><span data-en="Pilot deployment" data-zh="试点部署">Pilot deployment</span></li></ul></div>
+    </section>
+    <section id="slide-8" class="slide blue" tabindex="-1" role="region" aria-roledescription="slide" aria-labelledby="title-8" data-title-en="Force for good" data-title-zh="Force for Good" data-aria-en="Slide 8 of 8" data-aria-zh="第 8 张，共 8 张">
+      <div class="meta"><span>Force for Good</span><span>08</span></div><div class="canvas"><h2 id="title-8" class="closing" data-en="No one should miss help because the information was hard to use." data-zh="不应有人因为信息难以使用而错过帮助。">No one should miss help because the information was hard to use.</h2><p class="closing-note" data-en="Open source. Free for initial nonprofit partners." data-zh="开源。首批公益组织免费使用。">Open source. Free for initial nonprofit partners.</p></div>
+    </section>
+  </main>
+  <nav class="controls" aria-label="Deck controls" data-aria-en="Deck controls" data-aria-zh="演示控制"><div class="language" role="group" aria-label="Language" data-aria-en="Language" data-aria-zh="语言"><button id="language-en" type="button" aria-pressed="true">EN</button><button id="language-zh" type="button" aria-pressed="false" lang="zh-CN">中文</button></div><button id="previous" type="button" aria-label="Previous slide" data-aria-en="Previous slide" data-aria-zh="上一张">←</button><span id="counter" aria-hidden="true">1 / 8</span><button id="next" type="button" aria-label="Next slide" data-aria-en="Next slide" data-aria-zh="下一张">→</button></nav>
+  <p id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+  <script>
+    const slides=[...document.querySelectorAll('.slide')];
+    const counter=document.querySelector('#counter');
+    const announcement=document.querySelector('#announcement');
+    const languageButtons={en:document.querySelector('#language-en'),zh:document.querySelector('#language-zh')};
+    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let current=0,language='en';
+    function value(element,key){return element.dataset[`${key}${language==='en'?'En':'Zh'}`];}
+    function updateStatus(announce=false){counter.textContent=`${current+1} / ${slides.length}`;const title=value(slides[current],'title')||'OpenGuide';document.title=`${title} — OpenGuide`;if(announce){announcement.textContent=language==='en'?`Slide ${current+1} of ${slides.length}. ${title}`:`第 ${current+1} 张，共 ${slides.length} 张。${title}`;}}
+    function show(index,announce=true){current=Math.max(0,Math.min(slides.length-1,index));slides[current].scrollIntoView({behavior:reducedMotion.matches?'auto':'smooth',block:'start'});slides[current].focus({preventScroll:true});updateStatus(announce);}
+    function setLanguage(next){language=next;document.documentElement.lang=language==='en'?'en':'zh-CN';document.querySelectorAll('[data-en][data-zh]').forEach((el)=>{el.textContent=language==='en'?el.dataset.en:el.dataset.zh;});document.querySelectorAll('[data-aria-en][data-aria-zh]').forEach((el)=>{el.setAttribute('aria-label',language==='en'?el.dataset.ariaEn:el.dataset.ariaZh);});languageButtons.en.setAttribute('aria-pressed',String(language==='en'));languageButtons.zh.setAttribute('aria-pressed',String(language==='zh'));updateStatus(true);}
+    document.querySelector('#previous').addEventListener('click',()=>show(current-1));document.querySelector('#next').addEventListener('click',()=>show(current+1));languageButtons.en.addEventListener('click',()=>setLanguage('en'));languageButtons.zh.addEventListener('click',()=>setLanguage('zh'));
+    document.addEventListener('keydown',(event)=>{if(event.target.closest('button,a,input,textarea,select'))return;if(['ArrowDown','ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();show(current+1);}if(['ArrowUp','ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();show(current-1);}if(event.key==='Home'){event.preventDefault();show(0);}if(event.key==='End'){event.preventDefault();show(slides.length-1);}});
+    const observer=new IntersectionObserver((entries)=>{const visible=entries.filter((entry)=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(!visible)return;current=slides.indexOf(visible.target);updateStatus(false);},{threshold:[.55,.8]});slides.forEach((slide)=>observer.observe(slide));
+    const previewSlide=Number.parseInt(new URLSearchParams(location.search).get('preview'),10)-1;
+    const linkedSlide=Number.parseInt(location.hash.replace('#slide-',''),10)-1;
+    if(Number.isInteger(previewSlide)&&previewSlide>=0&&previewSlide<slides.length){slides.forEach((slide,index)=>{slide.hidden=index!==previewSlide;});current=previewSlide;updateStatus(false);}else if(Number.isInteger(linkedSlide)&&linkedSlide>=0&&linkedSlide<slides.length){requestAnimationFrame(()=>{current=linkedSlide;slides[current].scrollIntoView({behavior:'auto',block:'start'});updateStatus(false);});}else{updateStatus(false);}
+  </script>
+</body>
+</html>
